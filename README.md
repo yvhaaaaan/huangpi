@@ -17,3 +17,12 @@
 
 油茶与丝苗米均为一级重点特色产品，后续品类通过统一产品模型扩展。
 
+## 后端接口切换
+
+前端接口配置位于 `小程序/miniprogram/config/api.ts`：
+
+- 开发演示保持 `useMock: true`
+- 后端联调时填写已配置为小程序合法域名的 HTTPS `baseUrl`
+- 将 `useMock` 改为 `false` 后，登录会使用真实接口
+
+统一请求封装位于 `小程序/miniprogram/utils/request.ts`，业务接口按普通用户、产品、商家、政府审核和文件上传拆分在 `小程序/miniprogram/api/` 中。

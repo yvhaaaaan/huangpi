@@ -2,7 +2,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 文档版本 | v1.1 |
+| 文档版本 | v1.2 |
 | 更新日期 | 2026-07-14 |
 | 适用范围 | 微信小程序统一后端接口、数据模型、权限、审核流程 |
 | 关联前端 | `小程序/miniprogram` |
@@ -234,6 +234,7 @@ flowchart TD
 | 时间格式 | ISO 8601 字符串或毫秒时间戳，接口需统一 |
 | 分页参数 | `page` 从 1 开始，`pageSize` 默认 10，最大 50 |
 | 删除方式 | 默认逻辑删除或下架，不做物理删除 |
+| 更新方法 | 使用 `PUT`；为兼容微信小程序请求能力，一期不使用 `PATCH` |
 
 ### 7.2 统一返回格式
 
@@ -275,6 +276,34 @@ flowchart TD
 | `40900` | 状态冲突 | 重复提交审核、重复收藏、重复报名 |
 | `50000` | 系统错误 | 未预期异常 |
 
+### 7.4 前端接口预留与联调契约
+
+前端已经建立统一接口层，后端实现时必须与以下约定保持一致：
+
+| 前端文件 | 对应后端能力 |
+| --- | --- |
+| `miniprogram/config/api.ts` | 后端 HTTPS 基础域名、mock/真实接口开关、超时时间。 |
+| `miniprogram/utils/request.ts` | 统一 JSON 请求、Bearer token、错误码、`401` 自动回登录页。 |
+| `miniprogram/api/auth.ts` | `/api/auth/*`。 |
+| `miniprogram/api/products.ts` | `/api/product-categories`、`/api/products/*`。 |
+| `miniprogram/api/user.ts` | 首页、搜索、地图、路线、活动、报名和收藏。 |
+| `miniprogram/api/merchant.ts` | `/api/merchant/*`。 |
+| `miniprogram/api/admin.ts` | `/api/admin/*`。 |
+| `miniprogram/api/files.ts` | `/api/files` 上传、查询和删除。 |
+
+联调要求：
+
+- 开发阶段前端默认 `useMock=true`；后端测试环境可用后，前端配置测试域名并切换为 `false`。
+- 后端域名必须使用 HTTPS，并加入微信小程序 request/uploadFile 合法域名。
+- 除登录接口外，接口从 `Authorization: Bearer <token>` 读取身份，不接收前端自行传入的角色作为权限依据。
+- 普通请求严格返回 `{ code, message, data, traceId }`，成功业务码固定为 `0`。
+- HTTP `401` 或业务码 `40100` 均表示登录失效；不得用 `200 + code=0 + data=null` 表示 token 过期。
+- `/api/auth/session` 用于小程序启动及回到前台时校验会话，返回结构与登录成功结构一致。
+- 列表接口统一返回 `{ list, page, pageSize, total }`，字段名不得在不同模块中变化。
+- 更新资源统一使用 `PUT`。若只更新部分字段，后端按“传入字段更新、未传字段保持不变”处理。
+- 文件上传使用 `multipart/form-data`，文件字段名为 `file`，附加字段 `businessType`；返回 `fileId` 和 HTTPS `url`。
+- 错误响应应提供可展示的 `message` 和可追踪的 `traceId`，不得把数据库异常或服务端堆栈直接返回前端。
+
 ## 8. 核心接口清单
 
 ### 8.1 认证接口
@@ -314,12 +343,12 @@ flowchart TD
 | --- | --- | --- | --- |
 | GET | `/api/merchant/dashboard` | `merchant` | 商家“我的”页统计、消息、待办。 |
 | GET | `/api/merchant/profile` | `merchant` | 当前商家资料。 |
-| PATCH | `/api/merchant/profile` | `merchant` | 保存商家资料草稿。 |
+| PUT | `/api/merchant/profile` | `merchant` | 保存商家资料草稿，未传字段保持不变。 |
 | POST | `/api/merchant/profile/submit` | `merchant` | 提交商家资料审核。 |
 | GET | `/api/merchant/products` | `merchant` | 当前商家的特色产品列表。 |
 | POST | `/api/merchant/products` | `merchant` | 新增特色产品，必须提交有效的 `categoryId`。 |
 | GET | `/api/merchant/products/{id}` | `merchant` | 查看自己的内容详情。 |
-| PATCH | `/api/merchant/products/{id}` | `merchant` | 编辑自己的内容。 |
+| PUT | `/api/merchant/products/{id}` | `merchant` | 编辑自己的内容，未传字段保持不变。 |
 | POST | `/api/merchant/products/{id}/submit` | `merchant` | 提交审核。 |
 | POST | `/api/merchant/products/{id}/close` | `merchant` | 下架自己的已发布内容。 |
 | GET | `/api/merchant/messages` | `merchant` | 商家消息。 |
@@ -338,7 +367,7 @@ flowchart TD
 | GET | `/api/admin/merchants` | `admin` | 商家列表，供统计和后续管理使用。 |
 | GET | `/api/admin/product-categories` | `admin` | 产品品类列表，包括停用品类。 |
 | POST | `/api/admin/product-categories` | `admin` | 新增产品品类。 |
-| PATCH | `/api/admin/product-categories/{id}` | `admin` | 修改品类名称、排序、重点等级和启用状态。 |
+| PUT | `/api/admin/product-categories/{id}` | `admin` | 修改品类名称、排序、重点等级和启用状态。 |
 | GET | `/api/admin/audit-logs` | `admin` | 操作日志查询。 |
 
 ### 8.5 文件接口

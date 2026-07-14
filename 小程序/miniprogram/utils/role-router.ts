@@ -1,4 +1,4 @@
-import { AuthSession, clearAuthSession, getAuthSession, UserRole } from './auth'
+import { AuthSession, clearAuthSession, getAuthSession, notifyBackendLogout, UserRole } from './auth'
 
 export const getRoleHome = (role: UserRole): string => {
   if (role === 'merchant') return '/pages/merchant/index'
@@ -24,6 +24,7 @@ export const requireAuth = (allowedRoles?: UserRole[]): AuthSession | null => {
 }
 
 export const logout = (): void => {
+  notifyBackendLogout()
   clearAuthSession()
   wx.reLaunch({ url: '/pages/login/index' })
 }

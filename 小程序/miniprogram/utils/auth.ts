@@ -1,3 +1,6 @@
+import { getRemoteSession, loginWithAccount, loginWithWechat, logoutRemoteSession } from '../api/auth'
+import { API_CONFIG } from '../config/api'
+
 export type UserRole = 'user' | 'merchant' | 'admin'
 
 export interface AuthUser {
@@ -54,6 +57,11 @@ const createMockSession = (account: string, nickname: string): AuthSession => {
 }
 
 export const loginByAccount = async (account: string, password: string): Promise<AuthSession> => {
+  if (!API_CONFIG.useMock) {
+    const session = await loginWithAccount(account, password)
+    saveAuthSession(session)
+    return session
+  }
   if (!['merchant', 'admin'].includes(account) || password !== '123456') {
     throw new Error('INVALID_CREDENTIALS')
   }
@@ -64,10 +72,35 @@ export const loginByAccount = async (account: string, password: string): Promise
 }
 
 export const loginByWechat = async (): Promise<AuthSession> => {
-  await new Promise<void>((resolve, reject) => {
-    wx.login({ success: () => resolve(), fail: error => reject(error) })
+  const code = await new Promise<string>((resolve, reject) => {
+    wx.login({
+      success: result => result.code ? resolve(result.code) : reject(new Error('WECHAT_CODE_MISSING')),
+      fail: error => reject(error),
+    })
   })
+  if (!API_CONFIG.useMock) {
+    const session = await loginWithWechat(code)
+    saveAuthSession(session)
+    return session
+  }
   const session = createMockSession('wechat', '微信用户')
   saveAuthSession(session)
   return session
+}
+
+export const notifyBackendLogout = (): void => {
+  if (!API_CONFIG.useMock) void logoutRemoteSession().catch(() => undefined)
+}
+
+export const validateAuthSession = async (): Promise<AuthSession | null> => {
+  const localSession = getAuthSession()
+  if (!localSession || API_CONFIG.useMock) return localSession
+  try {
+    const remoteSession = await getRemoteSession()
+    saveAuthSession(remoteSession)
+    return remoteSession
+  } catch (_error) {
+    // A 401 response clears storage in request.ts; transient network failures keep the local session.
+    return getAuthSession()
+  }
 }

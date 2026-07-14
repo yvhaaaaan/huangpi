@@ -1,4 +1,4 @@
-import { getAuthSession } from './utils/auth'
+import { getAuthSession, validateAuthSession } from './utils/auth'
 import { getRoleHome } from './utils/role-router'
 
 App<IAppOption>({
@@ -9,11 +9,11 @@ App<IAppOption>({
   },
 
   onShow(): void {
-    setTimeout(() => {
+    setTimeout(async () => {
       const pages = getCurrentPages()
       const route = pages.length ? pages[pages.length - 1].route : ''
       if (!route) return
-      const session = getAuthSession()
+      const session = await validateAuthSession()
       this.globalData.session = session
       const isAuthPage = route === 'pages/login/index' || route === 'pages/login/account/index'
       if (!session && !isAuthPage) wx.reLaunch({ url: '/pages/login/index' })
