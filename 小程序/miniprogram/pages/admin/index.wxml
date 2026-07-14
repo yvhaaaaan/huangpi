@@ -1,0 +1,28 @@
+<view class="admin-page">
+  <view class="admin-head">
+    <view class="admin-mark">政</view>
+    <view class="admin-info"><text class="admin-title">黄陂镇文旅管理</text><text class="admin-name">{{adminName}} · 管理员</text></view>
+  </view>
+
+  <view class="stats-row">
+    <view><text class="stat-value attention">{{stats.pending}}</text><text class="stat-label">待审核</text></view>
+    <view><text class="stat-value">{{stats.approvedToday}}</text><text class="stat-label">今日处理</text></view>
+    <view><text class="stat-value">{{stats.merchants}}</text><text class="stat-label">认证商家</text></view>
+  </view>
+
+  <view class="section-head"><view><text class="section-title">待处理内容</text><text class="section-desc">按提交时间排列</text></view><text class="section-link" bindtap="onReviewTap">查看全部</text></view>
+  <view class="review-list">
+    <view class="review-row" wx:for="{{pendingItems}}" wx:key="id" bindtap="onReviewTap">
+      <image class="review-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="review-main"><view class="review-title-line"><text class="review-title">{{item.title}}</text><text class="type-label">{{item.type}}</text></view><text class="review-owner">{{item.owner}}</text><text class="review-time">提交于 {{item.submittedAt}}</text></view>
+      <text class="row-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="account-section"><view class="account-row"><text>当前身份</text><text>政府管理员</text></view><view class="logout-row" bindtap="onLogout">退出登录</view></view>
+
+  <view class="admin-nav">
+    <view class="nav-item is-active"><text class="nav-icon">台</text><text>工作台</text></view>
+    <view class="nav-item" data-page="review" bindtap="onNavTap"><text class="nav-icon">审</text><text>审核</text></view>
+  </view>
+</view>

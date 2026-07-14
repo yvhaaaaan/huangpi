@@ -1,0 +1,47 @@
+<view class="mine-page">
+  <view class="merchant-head">
+    <image class="merchant-avatar" src="{{merchant.image}}" mode="aspectFill" />
+    <view class="merchant-info">
+      <view class="name-line"><text class="merchant-name">{{merchant.name}}</text><text class="verified">已认证</text></view>
+      <text class="merchant-owner">负责人：{{merchant.owner}}</text>
+    </view>
+  </view>
+
+  <view class="stats-row">
+    <view><text class="stat-value">{{stats.published}}</text><text class="stat-label">已发布</text></view>
+    <view><text class="stat-value">{{stats.pending}}</text><text class="stat-label">待审核</text></view>
+    <view><text class="stat-value">{{stats.draft}}</text><text class="stat-label">草稿</text></view>
+  </view>
+
+  <view class="panel-tabs">
+    <view class="panel-tab {{activePanel === 'todo' ? 'is-active' : ''}}" data-panel="todo" bindtap="onPanelTap">待办<text wx:if="{{todos.length}}">{{todos.length}}</text></view>
+    <view class="panel-tab {{activePanel === 'message' ? 'is-active' : ''}}" data-panel="message" bindtap="onPanelTap">消息<text wx:if="{{messages.length}}">{{messages.length}}</text></view>
+  </view>
+
+  <view class="list-section" wx:if="{{activePanel === 'todo'}}">
+    <view class="list-row" wx:for="{{todos}}" wx:key="id" data-product-id="{{item.productId}}" bindtap="onTodoTap">
+      <view class="row-state {{item.level}}"></view>
+      <view class="row-main"><text class="row-title">{{item.title}}</text><text class="row-desc">{{item.desc}}</text></view>
+      <text class="row-arrow">›</text>
+    </view>
+    <view class="plain-empty" wx:if="{{!todos.length}}"><text class="empty-title">暂无待办</text><text class="empty-desc">需要处理的内容会显示在这里</text></view>
+  </view>
+
+  <view class="list-section" wx:if="{{activePanel === 'message'}}">
+    <view class="list-row" wx:for="{{messages}}" wx:key="id" data-id="{{item.id}}" bindtap="onMessageTap">
+      <view class="message-type">{{item.type}}</view>
+      <view class="row-main"><view class="row-title-line"><text class="row-title">{{item.title}}</text><view class="unread" wx:if="{{item.unread}}"></view></view><text class="row-desc">{{item.desc}}</text><text class="row-time">{{item.time}}</text></view>
+      <text class="row-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="account-section">
+    <view class="account-row"><text>当前身份</text><text>认证商家</text></view>
+    <view class="logout-row" bindtap="onLogout">退出登录</view>
+  </view>
+
+  <view class="merchant-nav">
+    <view class="nav-item is-active"><text class="nav-icon">我</text><text>我的</text></view>
+    <view class="nav-item" data-page="add" bindtap="onNavTap"><text class="nav-icon">＋</text><text>新增</text></view>
+  </view>
+</view>

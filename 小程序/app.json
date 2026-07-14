@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/specialty/index",
+    "pages/map/index",
+    "pages/activity/index",
+    "pages/profile/index",
+    "pages/common/search",
+    "pages/tea/detail",
+    "pages/specialty/detail",
+    "pages/culture/index",
+    "pages/culture/detail",
+    "pages/intangible/index",
+    "pages/intangible/detail",
+    "pages/activity/detail",
+    "pages/activity/signup",
+    "pages/merchant/index",
+    "pages/admin/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "黄陂镇油茶文旅",
+    "navigationBarBackgroundColor": "#faf8f2",
+    "backgroundColor": "#faf8f2"
+  },
+  "tabBar": {
+    "color": "#7b8780",
+    "selectedColor": "#2e6b4e",
+    "backgroundColor": "#ffffff",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "首页" },
+      { "pagePath": "pages/specialty/index", "text": "特产" },
+      { "pagePath": "pages/map/index", "text": "导览" },
+      { "pagePath": "pages/activity/index", "text": "活动" },
+      { "pagePath": "pages/profile/index", "text": "我的" }
+    ]
+  },
+  "style": "v2"
+}

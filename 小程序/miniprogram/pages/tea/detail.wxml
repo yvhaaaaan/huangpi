@@ -1,0 +1,20 @@
+<view class="page-shell soft-bg">
+  <view class="top-visual">
+    <image class="visual-image" src="/static/real-tea.jpg" mode="aspectFill" />
+    <view class="visual-shade"></view>
+    <view class="visual-content">
+      <text class="hero-label">油茶文化</text>
+      <text class="hero-title">一碗油茶里的山乡待客礼</text>
+      <text class="hero-copy">从炒料、研磨到冲煮和品鉴，把地方饮食文化变成可参与的体验。</text>
+      <view class="hero-meta-row"><text class="hero-pill">适合研学</text><text class="hero-pill">60分钟体验</text></view>
+    </view>
+  </view>
+
+  <view class="section-bar"><view class="section-text"><text class="section-kicker">PROCESS</text><text class="section-title">制作流程</text></view></view>
+  <view class="list-gap">
+    <view class="card card-pad" wx:for="{{steps}}" wx:key="title"><text class="card-title">{{item.title}}</text><text class="card-desc">{{item.desc}}</text></view>
+  </view>
+
+  <view class="section-bar"><view class="section-text"><text class="section-kicker">ACTION</text><text class="section-title">参与体验</text></view></view>
+  <view class="action-row"><view class="line-button" bindtap="onCollectTap">收藏</view><button class="ghost-button" open-type="share">分享</button><view class="primary-button" data-url="/pages/activity/signup" bindtap="onNavigateTap">预约体验</view></view>
+</view>

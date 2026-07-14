@@ -1,0 +1,8 @@
+<view class="account-page">
+  <view class="account-head"><text class="head-title">账号登录</text><text class="head-desc">商家与政府管理员使用分配的账号</text></view>
+  <view class="account-form">
+    <view class="field {{accountFocused ? 'is-focused' : ''}}"><text class="field-label">账号</text><input class="field-input" value="{{account}}" maxlength="32" placeholder="请输入账号" placeholder-class="placeholder" bindinput="onAccountInput" bindfocus="onAccountFocus" bindblur="onAccountBlur" /></view>
+    <view class="field {{passwordFocused ? 'is-focused' : ''}}"><text class="field-label">密码</text><input class="field-input" value="{{password}}" password="{{!showPassword}}" maxlength="32" placeholder="请输入密码" placeholder-class="placeholder" bindinput="onPasswordInput" bindfocus="onPasswordFocus" bindblur="onPasswordBlur" /><view class="password-toggle {{showPassword ? 'is-open' : 'is-closed'}}" bindtap="onTogglePassword" aria-label="{{showPassword ? '隐藏密码' : '显示密码'}}"><view class="eye-icon"></view></view></view>
+    <view class="login-button" bindtap="onLogin">{{submitting ? '正在登录' : '登录'}}</view>
+  </view>
+</view>

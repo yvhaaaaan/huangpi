@@ -1,0 +1,81 @@
+<view class="map-page">
+  <view class="map-search-card">
+    <text class="map-search-icon">搜</text>
+    <input class="map-search-input" placeholder="搜索点位、路线、服务设施" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" />
+  </view>
+
+  <map
+    id="guideMap"
+    class="guide-map"
+    longitude="{{center.longitude}}"
+    latitude="{{center.latitude}}"
+    scale="{{scale}}"
+    markers="{{visibleMarkers}}"
+    polyline="{{polyline}}"
+    show-location="{{showUserLocation}}"
+    bindmarkertap="onMarkerTap"
+  >
+    <cover-view class="map-control-panel">
+      <cover-view class="map-control" bindtap="onLocateTap">定位</cover-view>
+      <cover-view class="map-control" bindtap="onRouteTap">路线</cover-view>
+      <cover-view class="map-control" bindtap="onResetTap">复位</cover-view>
+    </cover-view>
+  </map>
+
+  <scroll-view class="map-filter-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="map-filter-inner">
+      <text wx:for="{{types}}" wx:key="*this" class="map-filter-chip {{activeType === item ? 'is-active' : ''}}" data-type="{{item}}" bindtap="onTypeTap">{{item}}</text>
+    </view>
+  </scroll-view>
+
+  <view class="map-route-card" bindtap="onRouteTap">
+    <view class="map-route-head">
+      <view>
+        <text class="map-section-kicker">推荐路线</text>
+        <text class="map-route-title">油茶非遗半日游</text>
+      </view>
+      <text class="map-route-meta">3.5小时</text>
+    </view>
+    <text class="map-route-desc">游客中心 → 油茶体验点 → 客家古村 → 非遗工坊 → 文创市集</text>
+    <view class="map-route-tags">
+      <text>4 个点位</text>
+      <text>亲子友好</text>
+      <text>研学推荐</text>
+    </view>
+  </view>
+
+  <view class="map-section-row">
+    <view>
+      <text class="map-section-kicker">点位导览</text>
+      <text class="map-section-title">{{activeType === '全部' ? '全部特色资源' : activeType}}</text>
+    </view>
+    <text class="map-count">{{visibleMarkers.length}} 个点位</text>
+  </view>
+
+  <view class="map-point-card" wx:if="{{selectedPoint}}">
+    <image class="map-point-cover" src="{{selectedPoint.image}}" mode="aspectFill" />
+    <view class="map-point-body">
+      <view class="map-point-top">
+        <text class="map-point-title">{{selectedPoint.title}}</text>
+        <text class="map-point-tag">{{selectedPoint.type}}</text>
+      </view>
+      <text class="map-point-desc">{{selectedPoint.desc}}</text>
+      <text class="map-point-meta">{{selectedPoint.address}} · {{selectedPoint.duration}}</text>
+      <view class="map-actions">
+        <view class="map-secondary-btn" bindtap="onDetailTap">查看详情</view>
+        <view class="map-primary-btn" bindtap="onOpenLocationTap">一键导航</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="map-list">
+    <view class="map-list-item" wx:for="{{visibleMarkers}}" wx:key="id" data-id="{{item.id}}" bindtap="onPointTap">
+      <view class="map-list-index">{{index + 1}}</view>
+      <view class="map-list-main">
+        <text class="map-list-title">{{item.title}}</text>
+        <text class="map-list-desc">{{item.desc}}</text>
+      </view>
+      <text class="map-list-type">{{item.type}}</text>
+    </view>
+  </view>
+</view>

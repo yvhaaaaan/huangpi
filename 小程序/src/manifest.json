@@ -1,0 +1,12 @@
+{
+  "name": "黄陂镇油茶文旅",
+  "appid": "",
+  "description": "黄陂镇油茶客家文旅非遗小程序",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    "usingComponents": true
+  }
+}
+

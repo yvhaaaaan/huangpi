@@ -1,0 +1,22 @@
+<view class="page-shell">
+  <view class="page-hero">
+    <text class="page-kicker">客家文旅</text>
+    <text class="page-title">走进古村与山水日常</text>
+    <text class="page-desc">以古村、民俗、乡村慢行和油茶待客礼为核心，串联黄陂镇的文旅体验。</text>
+  </view>
+
+  <view class="section-row">
+    <text class="section-name">推荐线路</text>
+    <text class="section-action">半日游 / 一日游</text>
+  </view>
+  <view class="list-gap">
+    <view class="card" wx:for="{{routes}}" wx:key="id" data-url="/pages/culture/detail" bindtap="onRouteTap">
+      <image class="cover-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.duration}} · {{item.suitable}}</text>
+      </view>
+    </view>
+  </view>
+</view>

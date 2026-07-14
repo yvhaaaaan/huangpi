@@ -1,0 +1,36 @@
+<view class="page-shell soft-bg">
+  <view class="top-visual">
+    <image class="visual-image" src="/static/real-activity.jpg" mode="aspectFill" />
+    <view class="visual-shade"></view>
+    <view class="visual-content">
+      <text class="hero-label">活动资讯与报名</text>
+      <text class="hero-title">把油茶、非遗和研学排进行程</text>
+      <text class="hero-copy">活动按推荐和时间展示；只有“报名中”的活动可以提交报名。</text>
+    </view>
+  </view>
+
+  <view class="filter-row">
+    <text wx:for="{{statuses}}" wx:key="*this" class="filter-chip {{activeStatus === item ? 'is-active' : ''}}" data-status="{{item}}" bindtap="onStatusTap">{{item}}</text>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text"><text class="section-kicker">EVENTS</text><text class="section-title">活动列表</text><text class="section-sub">支持查看详情、收藏、分享和报名</text></view>
+  </view>
+
+  <view class="list-gap">
+    <view class="card" wx:for="{{activities}}" wx:key="id" wx:if="{{activeStatus === '全部' || activeStatus === item.status}}">
+      <image class="cover-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <view class="tag-row"><text class="status-pill {{item.status === '报名中' ? 'warn' : 'muted'}}">{{item.status}}</text><text class="tag">{{item.type}}</text></view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.time}} · {{item.place}} · 限 {{item.limit}} 人</text>
+        <view class="action-row">
+          <view class="line-button" bindtap="onCollectTap">收藏</view>
+          <button class="ghost-button" open-type="share">分享</button>
+          <view class="primary-button" data-url="{{item.status === '报名中' ? '/pages/activity/signup' : '/pages/activity/detail'}}" bindtap="onNavigateTap">{{item.status === '报名中' ? '报名' : '详情'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

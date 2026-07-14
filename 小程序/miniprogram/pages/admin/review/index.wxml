@@ -1,0 +1,22 @@
+<view class="review-page">
+  <view class="filter-bar">
+    <view wx:for="{{filters}}" wx:key="key" class="filter-item {{activeStatus === item.key ? 'is-active' : ''}}" data-status="{{item.key}}" bindtap="onFilterTap">{{item.label}}</view>
+  </view>
+  <view class="result-count">共 {{filteredItems.length}} 条</view>
+
+  <view class="review-list" wx:if="{{filteredItems.length}}">
+    <view class="review-card" wx:for="{{filteredItems}}" wx:key="id">
+      <view class="review-body">
+        <image class="review-image" src="{{item.image}}" mode="aspectFill" />
+        <view class="review-main"><view class="title-line"><text class="review-title">{{item.title}}</text><text class="status status-{{item.status}}">{{item.statusLabel}}</text></view><text class="review-type">{{item.type}} · {{item.owner}}</text><text class="review-summary">{{item.summary}}</text><text class="review-time">提交于 {{item.submittedAt}}</text></view>
+      </view>
+      <view class="review-actions" wx:if="{{item.status === 'pending'}}"><view class="reject-button" data-id="{{item.id}}" bindtap="onRejectTap">驳回</view><view class="approve-button" data-id="{{item.id}}" bindtap="onApproveTap">通过</view></view>
+    </view>
+  </view>
+  <view class="empty" wx:else><text>暂无相关审核内容</text></view>
+
+  <view class="admin-nav">
+    <view class="nav-item" data-page="home" bindtap="onNavTap"><text class="nav-icon">台</text><text>工作台</text></view>
+    <view class="nav-item is-active"><text class="nav-icon">审</text><text>审核</text></view>
+  </view>
+</view>

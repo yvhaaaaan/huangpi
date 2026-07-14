@@ -1,0 +1,59 @@
+<view class="edit-page">
+  <view class="page-intro">
+    <text class="intro-title">{{editMode ? '修改产品' : '新增产品'}}</text>
+    <text class="intro-desc">{{editMode ? '按审核意见修改后重新提交' : '审核通过后将在用户端展示'}}</text>
+  </view>
+
+  <view class="form-section">
+    <view class="section-label">图片</view>
+    <view class="upload-grid">
+      <view class="upload-item" wx:for="{{images}}" wx:key="*this">
+        <image class="upload-image" src="{{item}}" mode="aspectFill" />
+        <view class="upload-remove" data-index="{{index}}" bindtap="onRemoveImage">×</view>
+      </view>
+      <view class="upload-item upload-add" wx:if="{{images.length < 3}}" bindtap="onChooseImage"><text class="upload-plus">＋</text><text class="upload-text">添加图片</text></view>
+    </view>
+    <text class="section-note">最多 3 张，第一张作为封面</text>
+  </view>
+
+  <view class="form-section fields-section">
+    <view class="field-row">
+      <view class="field-label"><text class="required">*</text>名称</view>
+      <input class="field-input" value="{{title}}" data-field="title" maxlength="30" placeholder="请输入产品名称" placeholder-class="placeholder" bindinput="onInput" />
+    </view>
+    <picker range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+      <view class="field-row">
+        <view class="field-label"><text class="required">*</text>分类</view>
+        <view class="picker-value"><text>{{category || '请选择品类'}}</text><text class="picker-arrow">›</text></view>
+      </view>
+    </picker>
+    <view class="textarea-row">
+      <view class="field-label"><text class="required">*</text>介绍</view>
+      <textarea class="field-textarea" value="{{summary}}" data-field="summary" maxlength="500" placeholder="填写产地、特色、原料和制作方式" placeholder-class="placeholder" bindinput="onInput" />
+      <text class="word-count">{{summary.length}}/500</text>
+    </view>
+  </view>
+
+  <view class="form-section fields-section">
+    <view class="field-row">
+      <view class="field-label">地址</view>
+      <input class="field-input" value="{{address}}" data-field="address" placeholder="选填，游客可查看地址" placeholder-class="placeholder" bindinput="onInput" />
+    </view>
+    <view class="field-row">
+      <view class="field-label">电话</view>
+      <input class="field-input" type="number" value="{{phone}}" data-field="phone" maxlength="11" placeholder="选填，游客可联系商家" placeholder-class="placeholder" bindinput="onInput" />
+    </view>
+  </view>
+
+  <view class="submit-note">提交后进入审核，审核结果会在“我的”中通知</view>
+
+  <view class="bottom-actions">
+    <view class="draft-button" bindtap="onSaveDraft">存草稿</view>
+    <view class="submit-button" bindtap="onSubmit">提交审核</view>
+  </view>
+
+  <view class="merchant-nav">
+    <view class="nav-item" data-page="mine" bindtap="onNavTap"><text class="nav-icon">我</text><text>我的</text></view>
+    <view class="nav-item is-active"><text class="nav-icon">＋</text><text>新增</text></view>
+  </view>
+</view>

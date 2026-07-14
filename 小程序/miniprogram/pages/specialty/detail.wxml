@@ -1,0 +1,18 @@
+<view class="page-shell soft-bg">
+  <swiper class="top-visual" circular indicator-dots>
+    <swiper-item wx:for="{{product.images}}" wx:key="*this"><image class="visual-image" src="{{item}}" mode="aspectFill" /></swiper-item>
+  </swiper>
+
+  <view class="section-bar"><view class="section-text"><text class="section-kicker">LOCAL GOODS</text><text class="section-title">{{product.title}}</text><text class="section-sub">{{product.categoryName}} · {{product.status}}</text></view><text class="status-pill">特色产品</text></view>
+  <view class="card card-pad">
+    <text class="card-title">详细介绍</text>
+    <text class="card-desc">{{product.detail}}</text>
+    <text class="card-title" style="margin-top: 22rpx;">商家信息</text>
+    <text class="card-desc">发布方：{{product.merchant}}</text>
+    <text class="card-desc">地址：{{product.address}}</text>
+    <text class="card-desc">营业时间：{{product.businessHours}}</text>
+  </view>
+
+  <view class="action-row"><view class="line-button" bindtap="onCollectTap">收藏</view><button class="ghost-button" open-type="share">分享</button><view class="line-button" bindtap="onMapTap">地图</view></view>
+  <view class="action-row"><view class="ghost-button" bindtap="onNavTap">一键导航</view><view class="primary-button" bindtap="onContactTap">联系商家</view></view>
+</view>

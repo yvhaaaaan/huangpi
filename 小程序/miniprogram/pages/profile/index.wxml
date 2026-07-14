@@ -1,0 +1,27 @@
+<view class="page-shell soft-bg profile-page">
+  <view class="profile-head">
+    <view class="avatar">{{avatarText}}</view>
+    <view class="profile-main"><text class="profile-name">{{nickname}}</text><text class="profile-role">{{roleLabel}}</text></view>
+  </view>
+
+  <view class="section-bar"><view class="section-text"><text class="section-title">我的内容</text></view></view>
+  <view class="two-col">
+    <view class="stat-card"><text class="stat-value">{{favoriteCount}}</text><text class="stat-label">我的收藏</text></view>
+    <view class="stat-card"><text class="stat-value">{{signupCount}}</text><text class="stat-label">我的报名</text></view>
+  </view>
+
+  <view class="section-bar"><view class="section-text"><text class="section-title">常用功能</text></view></view>
+  <view class="card">
+      <view class="menu-row" data-url="/pages/common/search" bindtap="onNavigateTap"><view class="menu-main"><text class="card-title">搜索文旅资源</text><text class="card-desc">查找油茶、丝苗米、点位、路线和活动</text></view><text class="menu-arrow">›</text></view>
+    <view class="menu-row" bindtap="onToastTap"><view class="menu-main"><text class="card-title">我的收藏</text><text class="card-desc">查看已收藏的文旅内容</text></view><text class="menu-arrow">›</text></view>
+    <view class="menu-row" bindtap="onToastTap"><view class="menu-main"><text class="card-title">我的报名</text><text class="card-desc">查看活动报名记录</text></view><text class="menu-arrow">›</text></view>
+      <view class="menu-row" bindtap="onToastTap"><view class="menu-main"><text class="card-title">关于我们</text><text class="card-desc">了解黄陂镇特色产业客家文旅项目</text></view><text class="menu-arrow">›</text></view>
+  </view>
+
+  <view wx:if="{{role === 'merchant'}}">
+    <view class="section-bar"><view class="section-text"><text class="section-title">商家功能</text></view></view>
+    <view class="card"><view class="menu-row" data-url="/pages/merchant/index" bindtap="onNavigateTap"><view class="menu-main"><text class="card-title">进入商家管理</text><text class="card-desc">维护商家发布的特色产品内容</text></view><text class="menu-arrow">›</text></view></view>
+  </view>
+
+  <view class="logout-button" bindtap="onLogout">退出登录</view>
+</view>

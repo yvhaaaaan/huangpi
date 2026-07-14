@@ -1,0 +1,8 @@
+<view class="page-shell soft-bg">
+  <view class="card card-pad" style="margin-top: 90rpx; text-align: center;">
+    <view class="avatar" style="margin: 0 auto 24rpx;">✓</view>
+    <text class="section-title">报名提交成功</text>
+    <text class="section-sub">系统已生成报名记录，后续可在个人中心的“我的报名”查看。</text>
+    <view class="action-row"><view class="line-button" data-url="/pages/home/index" data-mode="switchTab" bindtap="onNavTap">回首页</view><view class="primary-button" data-url="/pages/profile/index" data-mode="switchTab" bindtap="onNavTap">我的报名</view></view>
+  </view>
+</view>

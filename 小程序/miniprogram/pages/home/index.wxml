@@ -1,0 +1,138 @@
+<view class="page-shell soft-bg">
+  <view class="top-visual">
+    <image class="visual-image" src="/static/real-hero.jpg" mode="aspectFill" />
+    <view class="visual-shade"></view>
+    <view class="visual-content">
+      <text class="hero-label">黄陂镇 · 特色产业客家文旅非遗</text>
+      <text class="hero-title">山乡好物，客家风情</text>
+      <text class="hero-copy">浏览油茶、丝苗米等特色产品，以及客家文旅、非遗体验、路线导览和活动资讯。</text>
+      <view class="hero-meta-row">
+        <text class="hero-pill">已发布资源 48</text>
+        <text class="hero-pill">推荐路线 4 条</text>
+        <text class="hero-pill">近期活动 6 场</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="search-card" bindtap="onSearchTap">
+    <text class="search-icon">搜</text>
+    <text class="search-placeholder">搜索油茶、丝苗米、文旅点位和活动</text>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">QUICK ENTRY</text>
+      <text class="section-title">快速进入</text>
+    </view>
+    <text class="more-link" data-url="/pages/common/search" data-mode="navigateTo" bindtap="onNavTap">全站搜索></text>
+  </view>
+  <view class="quick-grid">
+    <view class="quick-tile" wx:for="{{shortcuts}}" wx:key="title" data-url="{{item.url}}" data-mode="{{item.mode}}" bindtap="onNavTap">
+      <view class="quick-icon">{{item.icon}}</view>
+      <text class="quick-title">{{item.title}}</text>
+      <text class="quick-desc">{{item.desc}}</text>
+    </view>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">LOCAL GOODS</text>
+      <text class="section-title">推荐特色产品</text>
+      <text class="section-sub">油茶与丝苗米同为重点品类，只展示不交易</text>
+    </view>
+    <text class="more-link" data-url="/pages/specialty/index" data-mode="switchTab" bindtap="onNavTap">查看更多></text>
+  </view>
+  <scroll-view class="horizontal-list" scroll-x enhanced show-scrollbar="{{false}}">
+    <view class="card wide-card" wx:for="{{specialties}}" wx:key="id" data-url="/pages/specialty/detail?id={{item.id}}" data-mode="navigateTo" bindtap="onNavTap">
+      <image class="inline-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <view class="tag-row">
+          <text class="tag">{{item.categoryName}}</text>
+          <text class="status-pill">已发布</text>
+        </view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.merchant}} · {{item.address}}</text>
+        <view class="action-row">
+          <view class="line-button" catchtap="onCollectTap">收藏</view>
+          <view class="ghost-button" catchtap="onMapTap">查看地图</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">TOUR POINTS</text>
+      <text class="section-title">推荐文旅点位</text>
+    </view>
+    <text class="more-link" data-url="/pages/map/index" data-mode="switchTab" bindtap="onNavTap">去导览></text>
+  </view>
+  <view class="list-gap">
+    <view class="thumb-row-card" wx:for="{{points}}" wx:key="id" data-url="/pages/culture/detail" data-mode="navigateTo" bindtap="onNavTap">
+      <image class="thumb-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="thumb-body">
+        <view class="tag-row"><text class="tag">{{item.tag}}</text></view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.distance}} · 建议停留 {{item.duration}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">INTANGIBLE HERITAGE</text>
+      <text class="section-title">推荐非遗项目</text>
+    </view>
+    <text class="more-link" data-url="/pages/intangible/index" data-mode="navigateTo" bindtap="onNavTap">更多非遗></text>
+  </view>
+  <view class="two-col">
+    <view class="card" wx:for="{{heritageItems}}" wx:key="id" data-url="/pages/intangible/detail" data-mode="navigateTo" bindtap="onNavTap">
+      <image class="inline-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">ROUTE</text>
+      <text class="section-title">推荐游玩路线</text>
+    </view>
+  </view>
+  <view class="route-card" data-url="/pages/map/index" data-mode="switchTab" bindtap="onNavTap">
+    <text class="route-title">油茶非遗半日游</text>
+    <text class="route-desc">游客中心出发，串联油茶体验点、客家古村、非遗工坊和文创市集。</text>
+    <view class="timeline">
+      <text class="timeline-node">游客中心</text>
+      <text class="timeline-node">油茶体验</text>
+      <text class="timeline-node">客家古村</text>
+      <text class="timeline-node">非遗工坊</text>
+    </view>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text">
+      <text class="section-kicker">ACTIVITY</text>
+      <text class="section-title">最新活动</text>
+    </view>
+    <text class="more-link" data-url="/pages/activity/index" data-mode="switchTab" bindtap="onNavTap">查看活动></text>
+  </view>
+  <view class="list-gap">
+    <view class="thumb-row-card" wx:for="{{activities}}" wx:key="id" data-url="/pages/activity/detail" data-mode="navigateTo" bindtap="onNavTap">
+      <image class="thumb-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="thumb-body">
+        <view class="tag-row"><text class="status-pill warn">{{item.status}}</text><text class="tag">{{item.type}}</text></view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.time}} · {{item.place}}</text>
+        <view class="action-row">
+          <button class="line-button" open-type="share" catchtap="onStopTap">分享</button>
+          <view class="primary-button" catchtap="onSignupTap">报名</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+<view class="page-shell">
+  <view class="card">
+    <image class="cover-image" src="/static/activity.jpg" mode="aspectFill" />
+    <view class="card-pad">
+      <text class="page-title">油茶制作技艺</text>
+      <text class="page-desc">这项体验以黄陂镇油茶为核心，通过讲解、演示和互动制作，让游客理解地方饮食文化。</text>
+    </view>
+  </view>
+
+  <view class="section-row">
+    <text class="section-name">体验亮点</text>
+    <text class="section-action">适合研学</text>
+  </view>
+  <view class="list-gap">
+    <view class="card card-pad" wx:for="{{highlights}}" wx:key="*this">
+      <text class="card-desc">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="primary-button" style="margin-top: 28rpx;" data-url="/pages/activity/signup" bindtap="onSignupTap">预约体验</view>
+</view>

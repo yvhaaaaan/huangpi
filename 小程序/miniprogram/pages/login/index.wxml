@@ -1,0 +1,22 @@
+<view class="login-page">
+  <view class="topbar" style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;"><text>登录</text></view>
+
+  <view class="login-content">
+    <view class="brand-block">
+      <view class="brand-mark">茶</view>
+  <text class="brand-name">黄陂镇特色文旅</text>
+      <text class="brand-desc">登录后进入对应的使用界面</text>
+    </view>
+
+    <view class="login-actions">
+      <view class="method-button wechat-login" bindtap="onWechatLogin">{{submitting ? '正在登录' : '微信登录'}}</view>
+      <view class="method-button account-login" bindtap="onOpenAccount">账号登录</view>
+    </view>
+
+    <view class="agreement" bindtap="onToggleAgreement">
+      <view class="radio {{agreed ? 'is-checked' : ''}}"><view wx:if="{{agreed}}"></view></view>
+      <view class="agreement-copy"><text>我已阅读并同意</text><text class="agreement-link" catchtap="onAgreementTap">《用户服务协议》</text><text>和</text><text class="agreement-link" catchtap="onPrivacyTap">《隐私政策》</text></view>
+    </view>
+  </view>
+
+</view>

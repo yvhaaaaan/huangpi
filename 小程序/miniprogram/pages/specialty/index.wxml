@@ -1,0 +1,38 @@
+<view class="page-shell soft-bg">
+  <view class="top-visual">
+    <image class="visual-image" src="/static/real-product.jpg" mode="aspectFill" />
+    <view class="visual-shade"></view>
+    <view class="visual-content">
+      <text class="hero-label">黄陂特色产品</text>
+      <text class="hero-title">油茶、丝苗米，都是黄陂重点好物</text>
+      <text class="hero-copy">集中展示本地特色产品，支持收藏、联系商家、查看地图和一键导航，不提供在线交易。</text>
+      <view class="hero-meta-row"><text class="hero-pill">已发布 12 件</text><text class="hero-pill">商家 5 家</text></view>
+    </view>
+  </view>
+
+  <view class="filter-row">
+    <text wx:for="{{categories}}" wx:key="*this" class="filter-chip {{activeCategory === item ? 'is-active' : ''}}" data-category="{{item}}" bindtap="onFilterTap">{{item}}</text>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text"><text class="section-kicker">PUBLISHED GOODS</text><text class="section-title">已审核产品</text><text class="section-sub">按品类筛选，油茶和丝苗米同级展示</text></view>
+  </view>
+
+  <view class="list-gap">
+    <view wx:for="{{products}}" wx:key="id" wx:if="{{activeCategory === '全部' || activeCategory === item.categoryName}}" class="card">
+      <image class="cover-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <view class="tag-row"><text class="tag">{{item.categoryName}}</text><text class="status-pill">{{item.status}}</text></view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.merchant}} · {{item.address}}</text>
+        <text class="meta-text" wx:if="{{item.contact}}">联系电话：{{item.contact}}</text>
+        <view class="action-row">
+          <view class="line-button" data-url="/pages/specialty/detail?id={{item.id}}" bindtap="onNavigateTap">详情</view>
+          <view class="ghost-button" bindtap="onMapTap">地图</view>
+          <view class="primary-button" bindtap="onContactTap">联系</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

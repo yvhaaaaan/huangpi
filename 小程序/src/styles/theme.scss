@@ -1,0 +1,57 @@
+@use 'sass:color';
+$primary: #2e6b4e;
+$primary-light: #e8f4ed;
+$bg: #faf8f2;
+$card: #ffffff;
+$text: #1f2d24;
+$text-secondary: #66756d;
+$border: #e6ece8;
+$accent: #f38b4a;
+$warning: #d8b36a;
+
+page {
+  background: $bg;
+  color: $text;
+  font-size: 28rpx;
+}
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fbfaf7, #f7f4ee);
+}
+
+.card {
+  background: rgba(255,255,255,.96);
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(46, 107, 78, 0.08);
+  border: 1rpx solid rgba(230,236,232,.95);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 28rpx 0 16rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.muted {
+  color: $text-secondary;
+}
+
+.btn-primary {
+  background: $primary;
+  color: #fff;
+  border-radius: 999rpx;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: $primary-light;
+  color: $primary;
+  font-size: 22rpx;
+}

@@ -1,0 +1,22 @@
+<view class="page-shell">
+  <view class="page-hero">
+    <text class="page-kicker">非遗展示</text>
+    <text class="page-title">看得见，也能参与的传统技艺</text>
+    <text class="page-desc">展示本地工坊、传承人和体验课程，帮助游客把非遗从“观看”变成“参与”。</text>
+  </view>
+
+  <view class="section-row">
+    <text class="section-name">非遗项目</text>
+    <text class="section-action">预约体验</text>
+  </view>
+  <view class="list-gap">
+    <view class="card" wx:for="{{items}}" wx:key="id" bindtap="onItemTap">
+      <image class="cover-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="card-pad">
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+        <text class="meta-text">{{item.master}} · {{item.duration}}</text>
+      </view>
+    </view>
+  </view>
+</view>

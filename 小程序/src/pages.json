@@ -1,0 +1,120 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "黄陂镇油茶文旅",
+        "navigationBarBackgroundColor": "#faf8f2",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/specialty/index",
+      "style": {
+        "navigationBarTitleText": "油茶与特产"
+      }
+    },
+    {
+      "path": "pages/map/index",
+      "style": {
+        "navigationBarTitleText": "地图导览"
+      }
+    },
+    {
+      "path": "pages/activity/index",
+      "style": {
+        "navigationBarTitleText": "活动报名"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/common/search",
+      "style": {
+        "navigationBarTitleText": "搜索"
+      }
+    },
+    {
+      "path": "pages/tea/detail",
+      "style": {
+        "navigationBarTitleText": "油茶文化详情"
+      }
+    },
+    {
+      "path": "pages/specialty/detail",
+      "style": {
+        "navigationBarTitleText": "特产详情"
+      }
+    },
+    {
+      "path": "pages/culture/index",
+      "style": {
+        "navigationBarTitleText": "客家文旅"
+      }
+    },
+    {
+      "path": "pages/culture/detail",
+      "style": {
+        "navigationBarTitleText": "文旅详情"
+      }
+    },
+    {
+      "path": "pages/intangible/index",
+      "style": {
+        "navigationBarTitleText": "非遗展示"
+      }
+    },
+    {
+      "path": "pages/intangible/detail",
+      "style": {
+        "navigationBarTitleText": "非遗详情"
+      }
+    },
+    {
+      "path": "pages/activity/detail",
+      "style": {
+        "navigationBarTitleText": "活动详情"
+      }
+    },
+    {
+      "path": "pages/activity/signup",
+      "style": {
+        "navigationBarTitleText": "活动报名"
+      }
+    },
+    {
+      "path": "pages/merchant/index",
+      "style": {
+        "navigationBarTitleText": "商家管理"
+      }
+    },
+    {
+      "path": "pages/admin/index",
+      "style": {
+        "navigationBarTitleText": "平台管理"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#faf8f2",
+    "backgroundColor": "#faf8f2"
+  },
+  "tabBar": {
+    "color": "#7b8780",
+    "selectedColor": "#2e6b4e",
+    "backgroundColor": "#ffffff",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "首页" },
+      { "pagePath": "pages/specialty/index", "text": "特产" },
+      { "pagePath": "pages/map/index", "text": "导览" },
+      { "pagePath": "pages/activity/index", "text": "活动" },
+      { "pagePath": "pages/profile/index", "text": "我的" }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+<view class="page-shell soft-bg">
+  <view class="search-card" style="margin: 0;">
+    <text class="search-icon">搜</text>
+    <input class="search-input" placeholder="搜索油茶、丝苗米、点位、路线、活动" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" />
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text"><text class="section-kicker">HOT KEYWORDS</text><text class="section-title">热门搜索</text></view>
+  </view>
+  <view class="filter-row">
+    <text wx:for="{{hotKeywords}}" wx:key="*this" class="filter-chip" data-keyword="{{item}}" bindtap="onHotTap">{{item}}</text>
+  </view>
+
+  <view class="section-bar">
+    <view class="section-text"><text class="section-kicker">RESULTS</text><text class="section-title">{{keyword ? '搜索结果' : '推荐内容'}}</text><text class="section-sub">覆盖特色产品、文旅、非遗、路线和活动</text></view>
+  </view>
+  <view class="list-gap">
+    <view class="thumb-row-card" wx:for="{{results}}" wx:key="id" data-url="{{item.url}}" bindtap="onResultTap">
+      <image class="thumb-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="thumb-body">
+        <view class="tag-row"><text class="tag">{{item.type}}</text></view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+</view>

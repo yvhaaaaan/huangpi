@@ -1,0 +1,20 @@
+<view class="page-shell">
+  <view class="card">
+    <image class="cover-image" src="/static/map-point.jpg" mode="aspectFill" />
+    <view class="card-pad">
+      <text class="page-title">客家古村慢行线</text>
+      <text class="page-desc">沿村道慢行，了解客家建筑、油茶待客礼和乡村生活场景。</text>
+    </view>
+  </view>
+
+  <view class="section-row">
+    <text class="section-name">行程安排</text>
+    <text class="section-action">约 3 小时</text>
+  </view>
+  <view class="list-gap">
+    <view class="card card-pad" wx:for="{{schedule}}" wx:key="time">
+      <text class="card-title">{{item.time}} {{item.title}}</text>
+      <text class="card-desc">{{item.desc}}</text>
+    </view>
+  </view>
+</view>
