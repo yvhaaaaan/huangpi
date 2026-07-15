@@ -5,6 +5,7 @@
 ## 项目目录
 
 - `小程序/miniprogram`：微信小程序正式前端
+- `backend`：Java 17 + Spring Boot 后端
 - `黄陂镇油茶客家文旅非遗小程序_前端PRD.md`：前端需求文档
 - `黄陂镇油茶客家文旅非遗小程序_后端PRD.md`：后端需求文档
 - `黄陂镇油茶客家文旅非遗小程序需求说明书(1).md`：项目需求说明
@@ -17,6 +18,17 @@
 
 油茶与丝苗米均为一级重点特色产品，后续品类通过统一产品模型扩展。
 
+## 后端当前进度
+
+Spring Boot MVP 已实现统一认证、三角色权限、商家产品审核闭环、文件上传、地图路线、平台活动、活动报名和收藏。活动由平台/政府侧维护，商家端没有活动管理接口。
+
+验证命令：
+
+```powershell
+cd backend
+mvn clean package
+```
+
 ## 后端接口切换
 
 前端接口配置位于 `小程序/miniprogram/config/api.ts`：
@@ -26,3 +38,10 @@
 - 将 `useMock` 改为 `false` 后，登录会使用真实接口
 
 统一请求封装位于 `小程序/miniprogram/utils/request.ts`，业务接口按普通用户、产品、商家、政府审核和文件上传拆分在 `小程序/miniprogram/api/` 中。
+
+后端本地启动：
+
+```powershell
+cd backend
+mvn spring-boot:run
+```

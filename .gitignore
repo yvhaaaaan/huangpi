@@ -2,6 +2,11 @@
 **/node_modules/
 **/dist/
 **/*.log
+**/target/
+
+# Backend runtime data
+/backend/data/
+/backend/uploads/
 
 # WeChat Developer Tools local settings
 **/project.private.config.json
@@ -19,4 +24,3 @@ preview-info.json
 
 # Binary requirement documents are kept locally; Markdown versions are tracked
 /*.docx
-
