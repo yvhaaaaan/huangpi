@@ -43,7 +43,7 @@ let redirectingToLogin = false
 
 const getToken = (): string => {
   const session = wx.getStorageSync(SESSION_KEY) as { token?: string } | undefined
-  return session?.token || ''
+  return session && session.token ? session.token : ''
 }
 
 export const handleUnauthorized = (): void => {
@@ -76,17 +76,20 @@ export const request = <T>(options: RequestOptions): Promise<T> => {
       timeout: API_CONFIG.timeout,
       success: response => {
         const body = response.data
-        if (response.statusCode === 401 || body?.code === 40100) {
+        const bodyCode = body && body.code
+        const bodyMessage = body && body.message
+        const traceId = body && body.traceId
+        if (response.statusCode === 401 || bodyCode === 40100) {
           handleUnauthorized()
-          reject(new ApiError(body?.message || '登录状态已失效', body?.code || 40100, response.statusCode, body?.traceId))
+          reject(new ApiError(bodyMessage || '登录状态已失效', bodyCode || 40100, response.statusCode, traceId))
           return
         }
         if (response.statusCode < 200 || response.statusCode >= 300) {
-          reject(new ApiError(body?.message || `请求失败 (${response.statusCode})`, body?.code || -1, response.statusCode, body?.traceId))
+          reject(new ApiError(bodyMessage || `请求失败 (${response.statusCode})`, bodyCode || -1, response.statusCode, traceId))
           return
         }
         if (!body || body.code !== 0) {
-          reject(new ApiError(body?.message || '接口返回异常', body?.code || -1, response.statusCode, body?.traceId))
+          reject(new ApiError(bodyMessage || '接口返回异常', bodyCode || -1, response.statusCode, traceId))
           return
         }
         resolve(body.data)

@@ -21,7 +21,7 @@ const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000
 
 export const getAuthSession = (): AuthSession | null => {
   const session = wx.getStorageSync(SESSION_KEY) as AuthSession | undefined
-  if (!session?.token || !session.user?.role || session.expiresAt <= Date.now()) {
+  if (!session || !session.token || !session.user || !session.user.role || session.expiresAt <= Date.now()) {
     if (session) wx.removeStorageSync(SESSION_KEY)
     return null
   }

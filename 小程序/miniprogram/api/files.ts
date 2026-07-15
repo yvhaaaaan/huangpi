@@ -10,7 +10,7 @@ const SESSION_KEY = 'auth.session.v2'
 
 export const uploadImage = (filePath: string, businessType = 'merchant_product'): Promise<UploadedFile> => {
   const session = wx.getStorageSync(SESSION_KEY) as { token?: string } | undefined
-  const token = session?.token || ''
+  const token = session && session.token ? session.token : ''
 
   return new Promise<UploadedFile>((resolve, reject) => {
     wx.uploadFile({
