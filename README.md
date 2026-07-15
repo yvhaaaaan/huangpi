@@ -39,6 +39,10 @@ mvn clean package
 
 统一请求封装位于 `小程序/miniprogram/utils/request.ts`，业务接口按普通用户、产品、商家、政府审核和文件上传拆分在 `小程序/miniprogram/api/` 中。
 
+## 开发者工具排错
+
+如果控制台连续出现 `App is not defined`、`Page is not defined` 或 `subscribeHandler injected failed`，检查 `小程序/project.private.config.json`，确保 `setting.compileHotReLoad` 为 `false`。私有配置会覆盖仓库中的 `project.config.json`，修改后需要关闭并重新打开项目，或执行“清除缓存并重新编译”。
+
 后端本地启动：
 
 ```powershell
