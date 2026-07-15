@@ -1,77 +1,77 @@
 {
-    "pages":  [
-                  "pages/login/index",
-                  "pages/login/account/index",
-                  "pages/home/index",
-                  "pages/specialty/index",
-                  "pages/map/index",
-                  "pages/activity/index",
-                  "pages/profile/index",
-                  "pages/common/search",
-                  "pages/tea/detail",
-                  "pages/specialty/detail",
-                  "pages/culture/index",
-                  "pages/culture/detail",
-                  "pages/intangible/index",
-                  "pages/intangible/detail",
-                  "pages/activity/detail",
-                  "pages/activity/signup",
-                  "pages/activity/success",
-                  "pages/merchant/index",
-                  "pages/merchant/product-edit/index",
-                  "pages/admin/index",
-                  "pages/admin/review/index"
-              ],
-    "window":  {
-                   "navigationBarTextStyle":  "black",
-                   "navigationBarTitleText":  "黄陂镇特色文旅",
-                   "navigationBarBackgroundColor":  "#faf8f2",
-                   "backgroundColor":  "#faf8f2"
-               },
-    "tabBar":  {
-                   "color":  "#7b8780",
-                   "selectedColor":  "#2e6b4e",
-                   "backgroundColor":  "#ffffff",
-                   "list":  [
-                                {
-                                    "pagePath":  "pages/home/index",
-                                    "text":  "首页",
-                                    "iconPath":  "static/tabbar/home.png",
-                                    "selectedIconPath":  "static/tabbar/home-active.png"
-                                },
-                                {
-                                    "pagePath":  "pages/specialty/index",
-                                    "text":  "产品",
-                                    "iconPath":  "static/tabbar/specialty.png",
-                                    "selectedIconPath":  "static/tabbar/specialty-active.png"
-                                },
-                                {
-                                    "pagePath":  "pages/map/index",
-                                    "text":  "导览",
-                                    "iconPath":  "static/tabbar/map.png",
-                                    "selectedIconPath":  "static/tabbar/map-active.png"
-                                },
-                                {
-                                    "pagePath":  "pages/activity/index",
-                                    "text":  "活动",
-                                    "iconPath":  "static/tabbar/activity.png",
-                                    "selectedIconPath":  "static/tabbar/activity-active.png"
-                                },
-                                {
-                                    "pagePath":  "pages/profile/index",
-                                    "text":  "我的",
-                                    "iconPath":  "static/tabbar/profile.png",
-                                    "selectedIconPath":  "static/tabbar/profile-active.png"
-                                }
-                            ]
-               },
-    "style":  "v2",
-    "permission":  {
-                       "scope.userLocation":  {
-                                                  "desc":  "用于地图导览中显示当前位置、附近推荐和一键导航"
-                                              }
-                   },
-    "requiredPrivateInfos":  [
-                                 "getLocation"
-                             ]
+  "pages": [
+    "pages/login/index",
+    "pages/login/account/index",
+    "pages/home/index",
+    "pages/specialty/index",
+    "pages/map/index",
+    "pages/activity/index",
+    "pages/profile/index",
+    "pages/common/search",
+    "pages/tea/detail",
+    "pages/specialty/detail",
+    "pages/culture/index",
+    "pages/culture/detail",
+    "pages/intangible/index",
+    "pages/intangible/detail",
+    "pages/activity/detail",
+    "pages/activity/signup",
+    "pages/activity/success",
+    "pages/merchant/index",
+    "pages/merchant/product-edit/index",
+    "pages/admin/index",
+    "pages/admin/review/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "黄陂镇特色文旅",
+    "navigationBarBackgroundColor": "#faf8f2",
+    "backgroundColor": "#faf8f2"
+  },
+  "tabBar": {
+    "color": "#7b8780",
+    "selectedColor": "#2e6b4e",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/specialty/index",
+        "text": "产品",
+        "iconPath": "static/tabbar/specialty.png",
+        "selectedIconPath": "static/tabbar/specialty-active.png"
+      },
+      {
+        "pagePath": "pages/map/index",
+        "text": "导览",
+        "iconPath": "static/tabbar/map.png",
+        "selectedIconPath": "static/tabbar/map-active.png"
+      },
+      {
+        "pagePath": "pages/activity/index",
+        "text": "活动",
+        "iconPath": "static/tabbar/activity.png",
+        "selectedIconPath": "static/tabbar/activity-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/profile.png",
+        "selectedIconPath": "static/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于地图导览中显示当前位置、附近推荐和一键导航"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "description": "椤圭洰閰嶇疆鏂囦欢",
+  "description": "项目配置文件",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
   "setting": {
@@ -41,10 +41,10 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "3.0.2",
+  "libVersion": "trial",
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "appid": "wx7019f489d9ac1911"
+  "appid": "wx951b1ebf76094e98"
 }
