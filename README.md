@@ -5,7 +5,8 @@
 ## 项目目录
 
 - `frontend`：微信小程序前端工程，开发者工具直接打开此目录
-- `frontend/miniprogram`：微信小程序实际源码
+- `frontend/miniprogram-src`：TypeScript 和 SCSS 业务源码
+- `frontend/miniprogram`：构建后的原生 JS/WXSS 运行目录，微信开发者工具只加载此目录
 - `backend`：Java 17 + Spring Boot 后端
 - `黄陂镇油茶客家文旅非遗小程序_前端PRD.md`：前端需求文档
 - `黄陂镇油茶客家文旅非遗小程序_后端PRD.md`：后端需求文档
@@ -32,17 +33,35 @@ mvn clean package
 
 ## 后端接口切换
 
-前端接口配置位于 `frontend/miniprogram/config/api.ts`：
+前端接口配置位于 `frontend/miniprogram-src/config/api.ts`：
 
 - 开发演示保持 `useMock: true`
 - 后端联调时填写已配置为小程序合法域名的 HTTPS `baseUrl`
 - 将 `useMock` 改为 `false` 后，登录会使用真实接口
 
-统一请求封装位于 `frontend/miniprogram/utils/request.ts`，业务接口按普通用户、产品、商家、政府审核和文件上传拆分在 `frontend/miniprogram/api/` 中。
+统一请求封装位于 `frontend/miniprogram-src/utils/request.ts`，业务接口按普通用户、产品、商家、政府审核和文件上传拆分在 `frontend/miniprogram-src/api/` 中。
+
+## 前端开发
+
+首次拉取后安装依赖并构建：
+
+```powershell
+cd frontend
+npm install
+npm run check:miniprogram
+```
+
+日常开发时修改 `miniprogram-src` 中的 `.ts` 和 `.scss`，同时运行监听构建：
+
+```powershell
+npm run watch:miniprogram
+```
+
+`miniprogram` 中的 `.js` 和 `.wxss` 是生成文件，不要直接修改。
 
 ## 开发者工具排错
 
-如果控制台连续出现 `App is not defined`、`Page is not defined` 或 `subscribeHandler injected failed`，检查 `frontend/project.private.config.json`，确保 `setting.compileHotReLoad` 为 `false`。私有配置会覆盖仓库中的 `project.config.json`。如果开发者工具反复自动改回 `true`，需要先完全退出开发者工具，再关闭该选项并重新打开 `frontend`，必要时将私有配置临时设为只读。
+项目已关闭微信开发者工具内置的 TypeScript/Sass 编译插件，避免其热注入链路在 `App`、`Page` 初始化前直接执行源码。开发者工具应打开 `frontend`，运行根目录由 `project.config.json` 固定为 `miniprogram/`；该目录中不应出现 `.ts` 或 `.scss`。如果重新拉取后缺少 `.js`/`.wxss`，先执行 `npm run build:miniprogram`，再重新编译项目。
 
 后端本地启动：
 

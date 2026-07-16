@@ -1,0 +1,137 @@
+page {
+  background: #fff;
+}
+
+.account-page {
+  min-height: 100vh;
+  padding: 74rpx 42rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.account-head {
+  margin: 0 4rpx 42rpx;
+}
+
+.head-title, .head-desc {
+  display: block;
+}
+
+.head-title {
+  color: #263a30;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.head-desc {
+  margin-top: 12rpx;
+  color: #84919a;
+  font-size: 22rpx;
+}
+
+.account-form {
+  padding: 28rpx 30rpx 34rpx;
+  border: 1rpx solid #dfe7e2;
+  border-radius: 14rpx;
+  background: #fff;
+}
+
+.field {
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-top: 16rpx;
+  padding: 12rpx 20rpx;
+  border: 2rpx solid #e0e6e1;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  background: #fafbfa;
+}
+
+.field:first-child {
+  margin-top: 0;
+}
+
+.field.is-focused {
+  border-color: #1599ed;
+  background: #fff;
+}
+
+.field-label {
+  width: 92rpx;
+  flex: none;
+  color: #26372e;
+  font-size: 26rpx;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.field-input {
+  flex: 1;
+  min-width: 0;
+  height: 58rpx;
+  color: #26372e;
+  font-size: 26rpx;
+}
+
+.placeholder {
+  color: #afb7b1;
+}
+
+.password-toggle {
+  width: 72rpx;
+  height: 58rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.eye-icon {
+  position: relative;
+  width: 36rpx;
+  height: 24rpx;
+  border: 3rpx solid #6f7d85;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.eye-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9rpx;
+  height: 9rpx;
+  border-radius: 50%;
+  background: #6f7d85;
+  transform: translate(-50%, -50%);
+}
+
+.password-toggle.is-closed .eye-icon::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: -5rpx;
+  top: 9rpx;
+  width: 42rpx;
+  height: 3rpx;
+  background: #6f7d85;
+  box-shadow: 0 0 0 3rpx #fafbfa;
+  transform: rotate(-42deg);
+  transform-origin: center;
+}
+
+.login-button {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 34rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  background: #1599ed;
+  font-size: 27rpx;
+  font-weight: 600;
+}

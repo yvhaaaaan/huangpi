@@ -2,6 +2,6 @@
 
 interface IAppOption {
   globalData: {
-    session: import('../miniprogram/utils/auth').AuthSession | null,
+    session: import('../miniprogram-src/utils/auth').AuthSession | null,
   }
 }
