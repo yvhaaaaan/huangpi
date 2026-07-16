@@ -63,6 +63,8 @@ npm run watch:miniprogram
 
 项目已关闭微信开发者工具内置的 TypeScript/Sass 编译插件，避免其热注入链路在 `App`、`Page` 初始化前直接执行源码。开发者工具应打开 `frontend`，运行根目录由 `project.config.json` 固定为 `miniprogram/`；该目录中不应出现 `.ts` 或 `.scss`。如果重新拉取后缺少 `.js`/`.wxss`，先执行 `npm run build:miniprogram`，再重新编译项目。
 
+项目基础库固定为稳定版 `3.7.12`。不要选择 `trial` 灰度基础库：旧版开发者工具加载 `3.16.2` 等较新运行库时，可能导致调试运行库注入失败，并连锁出现 `App is not defined`、`Page is not defined`。如需使用更新基础库，应先升级微信开发者工具。
+
 后端本地启动：
 
 ```powershell
