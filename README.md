@@ -42,7 +42,7 @@ mvn clean package
 
 ## 开发者工具排错
 
-如果控制台连续出现 `App is not defined`、`Page is not defined` 或 `subscribeHandler injected failed`，检查 `frontend/project.private.config.json`，确保 `setting.compileHotReLoad` 为 `false`。私有配置会覆盖仓库中的 `project.config.json`，修改后需要关闭并重新打开项目，或执行“清除缓存并重新编译”。
+如果控制台连续出现 `App is not defined`、`Page is not defined` 或 `subscribeHandler injected failed`，检查 `frontend/project.private.config.json`，确保 `setting.compileHotReLoad` 为 `false`。私有配置会覆盖仓库中的 `project.config.json`。如果开发者工具反复自动改回 `true`，需要先完全退出开发者工具，再关闭该选项并重新打开 `frontend`，必要时将私有配置临时设为只读。
 
 后端本地启动：
 
