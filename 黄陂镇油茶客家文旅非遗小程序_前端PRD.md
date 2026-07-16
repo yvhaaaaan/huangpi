@@ -8,6 +8,8 @@
 
 前端实现：微信原生小程序 + TypeScript + SCSS
 
+前端目录：`frontend/miniprogram`
+
 地图方案：微信小程序原生 `map` 组件
 
 版本：V1.1
